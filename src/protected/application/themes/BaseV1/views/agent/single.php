@@ -227,6 +227,9 @@ $editEntity = $this->controller->action === 'create' || $this->controller->actio
 
 
 </div>
+
+<?php $this->part('singles/modal-agent', ['entity' => $entity, 'editEntity' => $editEntity]); ?>
+
 <script type="text/javascript">
   var botao = document.querySelector(".botao");
   botao.addEventListener("click", function(){
