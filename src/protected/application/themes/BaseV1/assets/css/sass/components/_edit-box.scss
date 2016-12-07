@@ -108,12 +108,16 @@
 
 .modal-wrapper {
     background-color: rgba(0,0,0,0.5);
-    position: fixed;
-    top: 0;
+    position: absolute;
+    top: -80px;
     right: 0;
     bottom: 0;
     left: 0;
     z-index: $z-index-tip;
+    @media screen and (min-width: $screen-tablet) {
+        position: fixed;
+        top: 0;
+    }
 }
 
 .modal {
@@ -123,9 +127,15 @@
     z-index: $z-index-tip;
     @media screen and (min-width: $screen-tablet) {
         width: 600px;
-        top: 200px;
+        top: 50px;
         left: 50%;
         margin: 0 0 0 -300px;
+    }
+    @media screen and (min-width: $screen-desktop) {
+        top: 100px;
+    }
+    @media screen and (min-width: $screen-lg-desktop) {
+        top: 150px;
     }
     .header-content {
         border-bottom: 1px solid $gray-lighter;
@@ -133,6 +143,7 @@
         min-height: initial;
         padding-bottom: 1.5rem;
         padding-left: 0;
+        padding-top: 0;
     }
     .widget {
         border-color: $gray-lighter;
