@@ -552,6 +552,9 @@ $editEntity = $this->controller->action === 'create' || $this->controller->actio
     </form>
 </script>
 <?php endif; ?>
+
+<?php $this->part('singles/modal-event', ['entity' => $entity, 'editEntity' => $editEntity]); ?>
+
 <script type="text/html" id="event-occurrence-item" class="js-mustache-template">
     <?php echo $eventOccurrenceItemTemplate; ?>
 </script>

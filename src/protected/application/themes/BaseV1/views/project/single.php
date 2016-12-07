@@ -25,6 +25,8 @@ $this->includeAngularEntityAssets($entity);
 
 $child_entity_request = isset($child_entity_request) ? $child_entity_request : null;
 
+$editEntity = $this->controller->action === 'create' || $this->controller->action === 'edit';
+
 ?>
 
 <?php $this->applyTemplateHook('breadcrumb','begin'); ?>
@@ -117,3 +119,5 @@ $child_entity_request = isset($child_entity_request) ? $child_entity_request : n
     <?php $this->part('link-list.php', array('entity'=>$entity)); ?>
     <!-- Link List END -->
 </div>
+
+<?php $this->part('singles/modal-project', ['entity' => $entity, 'editEntity' => $editEntity]); ?>

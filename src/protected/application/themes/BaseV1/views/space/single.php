@@ -20,6 +20,8 @@ $child_entity_request = isset($child_entity_request) ? $child_entity_request : n
 
 $this->entity = $entity;
 
+$editEntity = $this->controller->action === 'create' || $this->controller->action === 'edit';
+
 ?>
 <?php $this->applyTemplateHook('breadcrumb','begin'); ?>
 
@@ -145,3 +147,6 @@ $this->entity = $entity;
     <?php $this->part('link-list', ['entity' => $entity]); ?>
 
 </div>
+
+<?php $this->part('singles/modal-space', ['entity' => $entity, 'editEntity' => $editEntity]); ?>
+
