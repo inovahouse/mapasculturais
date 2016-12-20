@@ -27,6 +27,7 @@ class Agent extends \MapasCulturais\Entity
         Traits\EntityMetaLists,
         Traits\EntityGeoLocation,
         Traits\EntityTaxonomies,
+        Traits\EntityRevision,
         Traits\EntityAgentRelation,
         Traits\EntitySealRelation,
         Traits\EntityVerifiable,
@@ -406,7 +407,6 @@ class Agent extends \MapasCulturais\Entity
 
         return $this->getOwner()->canUser('modify') && $this->canUser('modify');
     }
-
 
     /** @ORM\PrePersist */
     public function __setParent($args = null){

@@ -21,7 +21,7 @@ class EntityRevision extends \MapasCulturais\Entity{
     const ACTION_TRASHED        = 'trashed';
     const ACTION_DELETED        = 'deleted';
 
-    
+
 
     /**
      * @var integer
@@ -32,7 +32,7 @@ class EntityRevision extends \MapasCulturais\Entity{
      * @ORM\SequenceGenerator(sequenceName="entity_revision_id_seq", allocationSize=1, initialValue=1)
      */
     protected $id;
-    
+
     /**
      * @var integer
      *
@@ -51,7 +51,7 @@ class EntityRevision extends \MapasCulturais\Entity{
      * @var \DateTime
      *
      * @ORM\Column(name="timestamp", type="datetime", nullable=false)
-     */  
+     */
     protected $timestamp;
 
     /**
@@ -67,7 +67,7 @@ class EntityRevision extends \MapasCulturais\Entity{
      * @ORM\Column(name="message", type="text", nullable=false)
      */
     protected $message = "";
-    
+
     /**
      * @var \MapasCulturais\Entities\EntityRevisionData[]
      *
@@ -78,8 +78,8 @@ class EntityRevision extends \MapasCulturais\Entity{
      * )
      */
     protected $data;
-    
-    
+
+
     /**
      * @var \MapasCulturais\Entities\User
      *
@@ -89,14 +89,20 @@ class EntityRevision extends \MapasCulturais\Entity{
      * })
      */
     protected $user;
-    
-    public function __construct(\MapasCulturais\Entity $entity, $action, $message) {
+
+    public function __construct(array $dataRevision, $action, $message = "") {
         parent::__construct();
-        
+
+
         $this->data = new \Doctrine\Common\Collections\ArrayCollection();
-        
+
+        // Se a ação for created, criar todos os atributos para incluir no revision_data
+        // if() ...
+        // else ...
+        // Se a ação for qualquer outra ação, pegar a revisão anterior, comparar com o data da revisão atual e gerar somente das informações atualizadas
+        // E quando tiver diferenças, utilizar o RevisionData da revisão anterior.
         $this->user = App::i()->user;
-        
+
     }
 
 

@@ -15,6 +15,8 @@ if($this->isEditable()){
 $this->includeMapAssets();
 
 $this->includeAngularEntityAssets($entity);
+$fields = $entity->getRevisionData();
+\MapasCulturais\App::i()->log->debug($fields);
 
 $editEntity = $this->controller->action === 'create' || $this->controller->action === 'edit';
 ?>

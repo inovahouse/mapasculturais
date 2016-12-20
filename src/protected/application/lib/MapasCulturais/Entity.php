@@ -864,7 +864,7 @@ abstract class Entity implements \JsonSerializable{
                         $notification->delete();
                         $this->sentNotification = 0;
                         $this->save();
-                        
+
                         $app->em->flush();
                     }
                 });
@@ -900,4 +900,27 @@ abstract class Entity implements \JsonSerializable{
 
     }
 
+    public function getRevisionData() {
+        $app = App::i();
+        $class_metadata = $app->em->getClassMetadata($this->getClassName());
+        $fields = $class_metadata->getFieldNames();
+        $app->log->debug($fields);
+        foreach($fields as $field) {
+            $revisionData[$field] = $this->$field;
+        }
+        $relations = $class_metadata->getAssociationMappings();
+        // if(array_key_exists("_children")) {
+        //     $revisionData["_children"] =
+        // }
+        if(array_key_exists("user",$relations)) {
+            $revisionData["user"] = $this->user->simplify("id,name");
+        }
+
+        $app->log->debug("Relacionamentos ----------------------------------------------------------------------------------");
+        $app->log->debug($relations);
+
+        $app->log->debug("Data revision ----------------------------------------------------------------------------------");
+        $app->log->debug($revisionData);die;
+        return $revisionData;
+    }
 }
